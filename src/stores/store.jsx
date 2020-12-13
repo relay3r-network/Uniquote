@@ -141,7 +141,25 @@ class Store {
           decimals: "18",
           symbol: "STAKE",
           price_id: 'xdai-stake',
-        }
+        },
+        {
+          address: "0x5D8d9F5b96f4438195BE9b99eee6118Ed4304286",
+          decimals: "18",
+          symbol: "COVER",
+          price_id: 'cover-protocol',
+        },
+        {
+          address: "0x18aaa7115705e8be94bffebde57af9bfc265b998",
+          decimals: "18",
+          symbol: "AUDIO",
+          price_id: 'audius',
+        },
+        {
+          address: "0x5b3f693efd5710106eb2eac839368364acb5a70f",
+          decimals: "18",
+          symbol: "RLR",
+          price_id: 'relayer-network',
+        },
       ],
       priceFeeds: [
 
@@ -402,7 +420,7 @@ class Store {
 
   _getUSDPrices = async () => {
     try {
-      const url = 'https://api.coingecko.com/api/v3/simple/price?ids=dai,usd-coin,true-usd,tether,yearn-finance,wrapped-bitcoin,ethereum,aave,uniswap,compound-governance-token,maker,havven,curve-dao-token,keep3rV1,link,renbtc,uma,hegic,unit-protocol,xdai-stake&vs_currencies=usd'
+      const url = 'https://api.coingecko.com/api/v3/simple/price?ids=dai,cover-protocol,relayer-network,audius,usd-coin,true-usd,tether,yearn-finance,wrapped-bitcoin,ethereum,aave,uniswap,compound-governance-token,maker,havven,curve-dao-token,keep3rV1,link,renbtc,uma,hegic,unit-protocol,xdai-stake&vs_currencies=usd'
       const priceString = await rp(url);
       const priceJSON = JSON.parse(priceString)
 

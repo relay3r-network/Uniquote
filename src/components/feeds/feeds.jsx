@@ -3,7 +3,8 @@ import * as moment from 'moment';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Typography,
-  CircularProgress
+  CircularProgress,
+  Paper
 } from '@material-ui/core';
 
 import Store from "../../stores";
@@ -27,7 +28,7 @@ const styles = theme => ({
     marginTop: '40px'
   },
   feedContainer: {
-    background: colors.lightGray,
+    background: colors.darkGray,
     width: '200px',
     padding: '24px 8px',
     minHeight: '280px',
@@ -38,7 +39,7 @@ const styles = theme => ({
     justifyContent: 'center',
     borderRadius: '10px',
     '&:hover': {
-      background: 'rgba(0,0,0,0.1)'
+      elevation24:true      // background: colors.lightGray
     }
   },
   pricePoint: {
@@ -83,12 +84,14 @@ class Feeds extends Component {
     const feeds = store.getStore('feeds')
 
     this.state = {
-      feeds: feeds
+      feeds: feeds,
+      shadows: {}
     }
 
     dispatcher.dispatch({ type: GET_FEEDS, content: { } })
   };
-
+  onMouseOver = (itemx) => this.setState({ shadow: {itemx:10} });
+  onMouseOut = (itemx) => this.setState({ shadow: {itemx:3}});
   componentWillMount() {
     emitter.on(FEEDS_UPDATED, this.feedsReturned);
     emitter.on(FEEDS_RETURNED, this.feedsReturned);
@@ -131,7 +134,9 @@ class Feeds extends Component {
     const { classes } = this.props;
 
     return (
-      <div className={ classes.feedContainer } key={ feed.token0 ? feed.token0.address : feed }>
+      <Paper className={ classes.feedContainer } key={ feed.token0 ? feed.token0.address : feed }
+      elevation={3}
+      >
         { (!feed.token0 || !feed.token1) && <CircularProgress className={ classes.absoluteCenter } /> }
         { feed.token0 && feed.token1 &&
           <div className={ classes.pair }>
@@ -143,7 +148,7 @@ class Feeds extends Component {
             <Typography variant='h3'>{ feed.consult && feed.consult.consult0To1 ? feed.consult.consult0To1.toFixed(4) : '0.00' } ETH</Typography>
           </div>
         }
-        { feed.token0 && feed.token1 &&
+        { feed.token0 && feed.token1 && feed.priceToken0 &&
           <div className={ classes.pricePoint }>
             <Typography variant='h3'>$ { feed.priceToken0 ? feed.priceToken0 : '0.00' } </Typography>
           </div>
@@ -173,7 +178,7 @@ class Feeds extends Component {
             <Typography variant='h3'>Unknown</Typography>
           </div>
         }
-        { feed.quote &&
+        {/* { feed.quote &&
           <div className={ classes.volatilityHead }>
             <Typography variant='h2'>Options</Typography>
           </div>
@@ -194,8 +199,8 @@ class Feeds extends Component {
           <div className={ classes.updated }>
             <Typography variant='h6'>Last updated: { moment(feed.lastUpdated*1000).fromNow() }</Typography>
           </div>
-        }
-      </div>
+        } */}
+      </Paper>
     )
   }
 }

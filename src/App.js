@@ -20,9 +20,9 @@ class App extends Component {
           <div style={{
             display: 'flex',
             flexDirection: 'column',
+            alignItems:'center',
             minHeight: '100vh',
-            alignItems: 'center',
-            background: colors.white
+            background: colors.almostBlack
           }}>
             <Header />
             <Feeds />

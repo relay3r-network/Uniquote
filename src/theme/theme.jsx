@@ -19,6 +19,7 @@ const WorkSans = {
 export const colors = {
   white: "#fff",
   black: '#000',
+  almostBlack : '#1e1e1e',
   blue: "#2F80ED",
   lightGray: "rgb(244, 245, 246);",
   darkGray: "rgba(43,57,84,.5)",
@@ -26,7 +27,7 @@ export const colors = {
   red: '#ed4337',
   orange: 'orange',
 
-  text: "#212529",
+  text: "#007bff",
 };
 
 const breakpoints = createBreakpoints({
@@ -42,18 +43,6 @@ const breakpoints = createBreakpoints({
 
 const iswapTheme =  {
   typography: {
-    fontFamily: [
-      '"Work Sans Thin"',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
     h1: {
       fontSize: '24px',
       fontWeight: '600',
@@ -75,6 +64,8 @@ const iswapTheme =  {
       WebkitFontSmoothing: "antialiased",
       MozOsxFontSmoothing: "grayscale",
       lineHeight: 1.2,
+      color: colors.white
+
     },
     h6: {
       fontSize: '12px',
@@ -82,10 +73,10 @@ const iswapTheme =  {
       WebkitFontSmoothing: "antialiased",
       MozOsxFontSmoothing: "grayscale",
       lineHeight: 1.2,
-      color: colors.darkGray
+      color: colors.white
     },
   },
-  type: 'light',
+  type: 'dark',
   overrides: {
     MuiCssBaseline: {
       '@global': {
